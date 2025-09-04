@@ -28,27 +28,27 @@ with col_img_credit:
         response = requests.get(image_url, timeout=5)
         response.raise_for_status()
         img = Image.open(BytesIO(response.content))
-        st.image(img, width=80, caption=None)
+        st.image(img, width=120, caption=None)
         img_displayed = True
     except Exception:
         try:
             response = requests.get(fallback_icon, timeout=5)
             response.raise_for_status()
             img = Image.open(BytesIO(response.content))
-            st.image(img, width=80, caption=None)
+            st.image(img, width=120, caption=None)
             img_displayed = True
         except Exception:
             st.info("이미지를 불러올 수 없습니다.")
 
     st.markdown(
         "<div style='margin-top: -1px; text-align:center;'>"
-        "<span style='font-size:0.9rem; color:#888;'>만든이: 박석</span>"
+        "<span style='font-size:1.05rem; color:#888;'>만든이: 박석</span>"
         "</div>",
         unsafe_allow_html=True
     )
     st.markdown(
         '<div style="text-align: center; margin-bottom: 6px;">'
-        '<span style="font-size: 0.9rem;">'
+        '<span style="font-size: 1.05rem;">'
         'Data 출처: <a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance</a>'
         '</span></div>',
         unsafe_allow_html=True
