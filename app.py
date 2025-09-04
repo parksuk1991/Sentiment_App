@@ -81,7 +81,7 @@ if not df.empty:
         plt.tight_layout()
         st.pyplot(fig3)
 
-    st.markdown("#### 티커별 평균 감성 점수 표")
+    st.markdown("#### 자산별 평균 센티먼트 점수")
     st.dataframe(mean_values.style.background_gradient(cmap='twilight'), use_container_width=True, height=200)
 
     if show_raw:
