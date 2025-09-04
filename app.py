@@ -41,25 +41,25 @@ if not df.empty:
     col1, col2, col3 = st.columns([1,1.5,1])
 
     with col1:
-        st.markdown("#### 감성 점수 분포")
+        st.markdown("#### 센티먼트 점수 분포")
         fig1, ax1 = plt.subplots(figsize=(5,2))
         cm = sns.color_palette("twilight", 20)
         plot = sns.histplot(data=df['Sentiment'], kde=True, bins=20, ax=ax1)
         for bin_, i in zip(plot.patches, cm):
             bin_.set_facecolor(i)
-        ax1.set_title('감성 점수 분포', fontsize=12)
-        ax1.set_xlabel('감성 점수', fontsize=10)
-        ax1.set_ylabel('빈도', fontsize=10)
+        ax1.set_title('Sentiment Score Distribution', fontsize=12)
+        ax1.set_xlabel('Sentiment Score', fontsize=10)
+        ax1.set_ylabel('Frequency', fontsize=10)
         plt.tight_layout()
         st.pyplot(fig1)
 
     with col2:
-        st.markdown("#### 티커별 감성 점수")
+        st.markdown("#### 자산별 센티먼트 점수")
         fig2, ax2 = plt.subplots(figsize=(7,2))
         ax = sns.boxplot(x='Ticker', y='Sentiment', data=df, palette='twilight', ax=ax2)
-        ax2.set_title('티커별 감성 점수', fontsize=12)
-        ax2.set_xlabel('티커', fontsize=10)
-        ax2.set_ylabel('감성 점수', fontsize=10)
+        ax2.set_title('Sentiment Score by Asset', fontsize=12)
+        ax2.set_xlabel('Ticker', fontsize=10)
+        ax2.set_ylabel('Sentiment Score', fontsize=10)
         ax2.tick_params(axis='x', labelsize=7)
         for i, row in mean_values.iterrows():
             color = 'red' if row['Sentiment'] >= 0 else 'blue'
@@ -71,9 +71,9 @@ if not df.empty:
         st.markdown("#### 감성 카테고리 빈도")
         fig3, ax3 = plt.subplots(figsize=(4,2))
         plot3 = sns.countplot(x='Sentiment_Category', data=df, palette='twilight', ax=ax3)
-        ax3.set_title('감성 카테고리 빈도', fontsize=12)
-        ax3.set_xlabel('감성 카테고리', fontsize=10)
-        ax3.set_ylabel('뉴스 개수', fontsize=10)
+        ax3.set_title('Sentiment Category Frequency', fontsize=12)
+        ax3.set_xlabel('Sentiment Category', fontsize=10)
+        ax3.set_ylabel('# of News', fontsize=10)
         ax3.tick_params(axis='x', labelsize=12)
         ax3.tick_params(axis='y', labelsize=8)
         for p in ax3.patches:
