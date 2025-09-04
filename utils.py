@@ -4,6 +4,8 @@ from datetime import datetime
 
 def get_news_data(tickers, start_date):
     news_list = []
+    # start_date를 timezone-naive로 변환
+    start_date_naive = start_date.replace(tzinfo=None)
     for ticker_symbol in tickers:
         ticker = yf.Ticker(ticker_symbol)
         try:
@@ -15,12 +17,18 @@ def get_news_data(tickers, start_date):
             date_str = content.get('pubDate')
             try:
                 pubdate = pd.to_datetime(date_str)
+                # pubdate를 timezone-naive로 변환
+                if pubdate is not pd.NaT and pubdate is not None:
+                    pubdate_naive = pubdate.replace(tzinfo=None)
+                else:
+                    pubdate_naive = None
             except Exception:
-                pubdate = None
-            if pubdate and pubdate >= start_date:
+                pubdate_naive = None
+            # pubdate_naive와 start_date_naive 비교
+            if pubdate_naive and pubdate_naive >= start_date_naive:
                 news_list.append({
                     'Ticker': ticker_symbol,
-                    'Date': pubdate,
+                    'Date': pubdate_naive,
                     'Headline': content.get('title', '')
                 })
     df = pd.DataFrame(news_list)
