@@ -28,7 +28,7 @@ with col_img_credit:
         response = requests.get(image_url, timeout=5)
         response.raise_for_status()
         img = Image.open(BytesIO(response.content))
-        st.image(img, width=120, caption=None)
+        st.image(img, width=140, caption=None)
         img_displayed = True
     except Exception:
         try:
