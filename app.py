@@ -9,23 +9,6 @@ from datetime import datetime, timedelta
 from utils import get_news_data, classify_sentiment
 import matplotlib as mpl
 
-# 한글 폰트 설정 함수
-def set_korean_font():
-    import platform
-    from matplotlib import font_manager
-
-    if platform.system() == 'Darwin':  # macOS
-        mpl.rc('font', family='AppleGothic')
-    elif platform.system() == 'Windows':  # Windows
-        mpl.rc('font', family='Malgun Gothic')
-    else:  # Linux
-        if not any(['NanumGothic' in f.name for f in font_manager.fontManager.ttflist]):
-            st.warning("한글 폰트(NanumGothic)가 시스템에 설치되어 있지 않습니다. 시스템에 설치해 주세요.")
-        mpl.rc('font', family='NanumGothic')
-    mpl.rcParams['axes.unicode_minus'] = False
-
-set_korean_font()
-
 nltk.download('vader_lexicon', quiet=True)
 
 st.set_page_config(page_title="포트폴리오 뉴스 감성 분석기", layout="wide")
