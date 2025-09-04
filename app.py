@@ -8,10 +8,52 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from datetime import datetime, timedelta
 from utils import get_news_data, classify_sentiment
 
+import requests
+from PIL import Image
+from io import BytesIO
+
 nltk.download('vader_lexicon', quiet=True)
 
 st.set_page_config(page_title="포트폴리오 뉴스 감성 분석기", layout="wide")
-st.title("📈 포트폴리오 센티먼트 분석기")
+
+# ===== 우측 상단 이미지 및 만든이 표시 =====
+col_title, col_img_credit = st.columns([8, 1])
+with col_title:
+    st.title("📈 포트폴리오 센티먼트 분석기")
+with col_img_credit:
+    image_url = "https://amateurphotographer.com/wp-content/uploads/sites/7/2017/08/Screen-Shot-2017-08-23-at-22.29.18.png?w=600.jpg" # for parksuk1991
+    fallback_icon = "https://cdn-icons-png.flaticon.com/512/3211/3211357.png"
+    img_displayed = False
+    try:
+        response = requests.get(image_url, timeout=5)
+        response.raise_for_status()
+        img = Image.open(BytesIO(response.content))
+        st.image(img, width=80, caption=None)
+        img_displayed = True
+    except Exception:
+        try:
+            response = requests.get(fallback_icon, timeout=5)
+            response.raise_for_status()
+            img = Image.open(BytesIO(response.content))
+            st.image(img, width=80, caption=None)
+            img_displayed = True
+        except Exception:
+            st.info("이미지를 불러올 수 없습니다.")
+
+    st.markdown(
+        "<div style='margin-top: -1px; text-align:center;'>"
+        "<span style='font-size:0.9rem; color:#888;'>만든이: 박석 (parksuk1991)</span>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div style="text-align: center; margin-bottom: 6px;">'
+        '<span style="font-size: 0.9rem;">'
+        'Data 출처: <a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance</a>'
+        '</span></div>',
+        unsafe_allow_html=True
+    )
+# ===== 여기까지 =====
 
 TICKERS = ['ACWI', 'IDEV', 'IEMG', 'SPY', 'QQQ', 'EWY', 'XLK', 'XLC', 'XLI', 'XLV', 'XLF', 'XLU', 'XLE', 'XLB', 'XLRE', 'XLY', 'XLP', 'SPYV', 'SPYG', 'VTV', 'VUG', 'VYM', 'RSP', 'USMV', 'PTF', 'SPMO']
 
