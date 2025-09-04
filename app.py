@@ -42,7 +42,7 @@ with col_img_credit:
 
     st.markdown(
         "<div style='margin-top: -1px; text-align:center;'>"
-        "<span style='font-size:0.9rem; color:#888;'>만든이: 박석 (parksuk1991)</span>"
+        "<span style='font-size:0.9rem; color:#888;'>만든이: 박석</span>"
         "</div>",
         unsafe_allow_html=True
     )
