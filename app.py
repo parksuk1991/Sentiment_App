@@ -42,13 +42,13 @@ with col_img_credit:
 
     st.markdown(
         "<div style='margin-top: -1px; text-align:center;'>"
-        "<span style='font-size:1.05rem; color:#888;'>만든이: 박석</span>"
+        "<span style='font-size:0.9rem; color:#888;'>만든이: 박석</span>"
         "</div>",
         unsafe_allow_html=True
     )
     st.markdown(
         '<div style="text-align: center; margin-bottom: 6px;">'
-        '<span style="font-size: 1.05rem;">'
+        '<span style="font-size: 0.9rem;">'
         'Data 출처: <a href="https://finance.yahoo.com/" target="_blank">Yahoo Finance</a>'
         '</span></div>',
         unsafe_allow_html=True
