@@ -11,7 +11,7 @@ from utils import get_news_data, classify_sentiment
 nltk.download('vader_lexicon', quiet=True)
 
 st.set_page_config(page_title="포트폴리오 뉴스 감성 분석기", layout="wide")
-st.title("📈 포트폴리오 뉴스 감성 분석기")
+st.title("📈 포트폴리오 센티먼트 분석기")
 
 TICKERS = ['ACWI', 'IDEV', 'IEMG', 'SPY', 'QQQ', 'EWY', 'XLK', 'XLC', 'XLI', 'XLV', 'XLF', 'XLU', 'XLE', 'XLB', 'XLRE', 'XLY', 'XLP', 'SPYV', 'SPYG', 'VTV', 'VUG', 'VYM', 'RSP', 'USMV', 'PTF', 'SPMO']
 
