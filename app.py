@@ -110,7 +110,7 @@ if not df.empty:
         st.pyplot(fig2)
 
     with col3:
-        st.markdown("#### 감성 카테고리 빈도")
+        st.markdown("#### 센티먼트 카테고리 빈도")
         fig3, ax3 = plt.subplots(figsize=(4,2))
         plot3 = sns.countplot(x='Sentiment_Category', data=df, palette='twilight', ax=ax3)
         ax3.set_title('Sentiment Category Frequency', fontsize=12)
