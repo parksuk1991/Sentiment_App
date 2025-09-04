@@ -17,7 +17,7 @@ TICKERS = ['ACWI', 'IDEV', 'IEMG', 'SPY', 'QQQ', 'EWY', 'XLK', 'XLC', 'XLI', 'XL
 
 st.sidebar.header("설정")
 tickers_selected = st.sidebar.multiselect("티커 선택", TICKERS, default=TICKERS)
-weeks_back = st.sidebar.slider("최근 몇 주 분석", 1, 8, 1)
+weeks_back = st.sidebar.slider("최근 N 주 분석", 1, 12, 1)
 show_raw = st.sidebar.checkbox("원본 데이터 보기")
 
 today = datetime.now()
