@@ -55,7 +55,8 @@ with col_img_credit:
     )
 # ===== 여기까지 =====
 
-TICKERS = ['ACWI', 'IDEV', 'IEMG', 'SPY', 'QQQ', 'EWY', 'XLK', 'XLC', 'XLI', 'XLV', 'XLF', 'XLU', 'XLE', 'XLB', 'XLRE', 'XLY', 'XLP', 'SPYV', 'SPYG', 'VTV', 'VUG', 'VYM', 'RSP', 'USMV', 'PTF', 'SPMO']
+#TICKERS = ['ACWI', 'IDEV', 'IEMG', 'SPY', 'QQQ', 'EWY', 'XLK', 'XLC', 'XLI', 'XLV', 'XLF', 'XLU', 'XLE', 'XLB', 'XLRE', 'XLY', 'XLP', 'SPYV', 'SPYG', 'VTV', 'VUG', 'VYM', 'RSP', 'USMV', 'PTF', 'SPMO']
+TICKERS = ['NVDA','MSFT','AVGO','TSM','QCOM','MU','MSTR','GOOGL','PLTR','ORCL','CRM','AAPL','PANW','AMD','APP','TSLA']
 
 st.sidebar.header("설정")
 tickers_selected = st.sidebar.multiselect("티커 선택", TICKERS, default=TICKERS)
