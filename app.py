@@ -55,16 +55,35 @@ with col_img_credit:
     )
 # ===== 여기까지 =====
 
-#TICKERS = ['ACWI', 'IDEV', 'IEMG', 'SPY', 'QQQ', 'EWY', 'XLK', 'XLC', 'XLI', 'XLV', 'XLF', 'XLU', 'XLE', 'XLB', 'XLRE', 'XLY', 'XLP', 'SPYV', 'SPYG', 'VTV', 'VUG', 'VYM', 'RSP', 'USMV', 'PTF', 'SPMO']
-TICKERS = ['NVDA','MSFT','AVGO','TSM','QCOM','MU','MSTR','GOOGL','PLTR','ORCL','CRM','AAPL','PANW','AMD','APP','TSLA','KLAC','LRCX','SHOP','ADI','ASML','INTU','BKNG','UBER','DIS','ADBE','CRWD','ALAB']
+DEFAULT_TICKERS = ['NVDA','MSFT','AVGO','TSM','QCOM','MU','MSTR','GOOGL','PLTR','ORCL','CRM','AAPL','PANW','AMD','APP','TSLA','KLAC','LRCX','SHOP','ADI','ASML','INTU','BKNG','UBER','DIS','ADBE','CRWD','ALAB']
 
 st.sidebar.header("설정")
-tickers_selected = st.sidebar.multiselect("티커 선택", TICKERS, default=TICKERS)
+tickers_input = st.sidebar.text_area(
+    "티커 입력 (쉼표 또는 줄바꿈으로 구분, 예: NVDA,MSFT,AAPL)",
+    value=",".join(DEFAULT_TICKERS),
+    height=100,
+    help="티커를 직접 입력하세요. 여러 개 입력 시 쉼표(,) 또는 줄바꿈으로 구분하세요."
+)
 weeks_back = st.sidebar.slider("최근 N 주 분석(1~12주)", 1, 12, 1)
 show_raw = st.sidebar.checkbox("원본 데이터 보기")
 
+# 입력값 파싱
+def parse_ticker_input(input_str):
+    tickers = []
+    for t in input_str.replace('\n', ',').split(','):
+        t = t.strip().upper()
+        if t:
+            tickers.append(t)
+    return list(dict.fromkeys(tickers))  # 중복 제거, 순서 유지
+
+tickers_selected = parse_ticker_input(tickers_input)
+
 today = datetime.now()
 start_date = today - timedelta(weeks=weeks_back)
+
+if not tickers_selected:
+    st.warning("분석할 티커를 1개 이상 입력하세요.")
+    st.stop()
 
 st.info(f"**{start_date.date()}** ~ **{today.date()}** 기간의 {len(tickers_selected)}개 티커 뉴스 감성 분석 결과입니다.")
 
